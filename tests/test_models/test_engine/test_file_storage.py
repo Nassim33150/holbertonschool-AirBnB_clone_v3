@@ -18,7 +18,7 @@ import json
 import os
 import pep8
 import unittest
-from file_storage import FileStorage
+from models.engine.file_storage import FileStorage
 FileStorage = file_storage.FileStorage
 classes = {"Amenity": Amenity, "BaseModel": BaseModel, "City": City,
            "Place": Place, "Review": Review, "State": State, "User": User}

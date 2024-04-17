@@ -18,7 +18,7 @@ import json
 import os
 import pep8
 import unittest
-from db_storage import DBStorage
+from models.engine.db_storage import DBStorage
 DBStorage = db_storage.DBStorage
 classes = {"Amenity": Amenity, "City": City, "Place": Place,
            "Review": Review, "State": State, "User": User}

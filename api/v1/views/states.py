@@ -1,11 +1,15 @@
 #!/usr/bin/python3
 """ import requests & json"""
+from flask import Flask
+from flask import jsonify
 import requests
 import json
 from models import storage
 from models.state import State
 from api.v1.views import app_views
 from flask import jsonify, abort
+from flask import request
+
 
 """ Create a new view for State objects """
 @app_views.route('/states', methods=['GET'])
@@ -42,11 +46,11 @@ def delete_state(state_id):
 def create_state():
     """ Creates a State object """
     state_dict = request.get_json()
-    if state_dict is None
+    if state_dict is None:
         abort(400, "Not a JSON")
     if "name" not in state_dict:
         return jsonify({"Missing name"}), 400
-    return jsonify(storage.new(State(**state_dict))).to_dict(), 200
+    return jsonify(storage.new(State(**state_dict)).to_dict()), 201
 
 """ Update a State object """
 @app_views.route('/states/<state_id>', methods=['PUT'])

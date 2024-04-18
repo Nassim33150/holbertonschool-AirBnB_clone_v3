@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ import modules """
 from flask import Flask
+from os import environ
 from models import storage
 from api.v1.views import app_views
 

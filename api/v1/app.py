@@ -1,11 +1,14 @@
-<<<<<<< HEAD
 #!/usr/bin/python3
 
 from flask import Flask
-from api import app
 from models import storage
-from api.v1.views import app_views
 import os
+from api.v1.views import app_views
+
+
+app = Flask(__name__)
+
+app.register_blueprint(app_views)
 
 @app.teardown_appcontext
 def teardown(exception):
@@ -16,8 +19,6 @@ if __name__ == "__main__":
     host = os.getenv("HBNB_API_HOST", "0.0.0.0")
     port = int(os.getenv("HBNB_API_PORT", "5000"))
     app.run(host=host, port=port, threaded=True)
-=======
-# api/v1/app.py
 """ import modules """
 from flask import Flask
 from models import storage
@@ -42,4 +43,3 @@ if __name__ == "__main__":
     host = os.getenv('HBNB_API_HOST', '0.0.0.0')
     port = int(os.getenv('HBNB_API_PORT', 5000))
     app.run(host=host, port=port, threaded=True)
->>>>>>> 66aceb74c43ec53b6f3f97318bd7bccf3082a81c

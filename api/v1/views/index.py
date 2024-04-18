@@ -12,6 +12,7 @@ from models.state import State
 from models.user import User
 
 
+<<<<<<< HEAD
 @app_views.route('/status', strict_slashes=False)
 def get_status():
     """ Return status """
@@ -23,6 +24,17 @@ def get_status():
 @app_views.route('/stats', strict_slashes=False)
 def stats():
     """ Return stats """
+=======
+""" Status of the API """
+
+@app_views.route('/status', methods=['GET'])
+def get_status():
+    return jsonify({"status": "OK"})
+
+""" Stats of objects """
+@app_views.route('/api/v1/stats', methods=['GET'])
+def get_stats():
+>>>>>>> 95797c7baf48e8ca04f1d76eef8f218016181d05
     stats = {
         "amenities": storage.count("Amenity"),
         "cities": storage.count("City"),

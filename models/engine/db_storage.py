@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-"""Contains the class DBStorage"""
+"""
+Contains the class DBStorage
+"""
 
 import models
 from models.amenity import Amenity
@@ -82,10 +84,7 @@ class DBStorage:
                         return obj
         return None
 
-    
-    
     def count(self, cls=None):
-        """count the number of objects in storage"""
+        """count number of objects in storage"""
         objs = self.all(cls)
         return (len(list(objs)))
-

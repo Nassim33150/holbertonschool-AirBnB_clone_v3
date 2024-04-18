@@ -18,6 +18,7 @@ import json
 import os
 import pep8
 import unittest
+from models.engine.db_storage import DBStorage
 DBStorage = db_storage.DBStorage
 classes = {"Amenity": Amenity, "City": City, "Place": Place,
            "Review": Review, "State": State, "User": User}
@@ -86,3 +87,30 @@ class TestFileStorage(unittest.TestCase):
     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_save(self):
         """Test that save properly saves objects to file.json"""
+
+class TestDBStorage(unittest.TestCase):
+    def setUp(self):
+        self.storage = DBStorage()
+
+    def test_get(self):
+        # Assuming that the DBStorage class has a method to add objects
+        self.storage.add('TestClass', '1', 'TestObject1')
+        self.storage.add('TestClass', '2', 'TestObject2')
+
+        self.assertEqual(self.storage.get('TestClass', '1'), 'TestObject1')
+        self.assertEqual(self.storage.get('TestClass', '2'), 'TestObject2')
+        self.assertEqual(self.storage.get('TestClass', '3'), None)
+        self.assertEqual(self.storage.get(None, '1'), None)
+
+    def test_count(self):
+        # Assuming that the DBStorage class has a method to add objects
+        self.storage.add('TestClass', '1', 'TestObject1')
+        self.storage.add('TestClass', '2', 'TestObject2')
+        self.storage.add('OtherClass', '1', 'OtherObject1')
+
+        self.assertEqual(self.storage.count('TestClass'), 2)
+        self.assertEqual(self.storage.count('OtherClass'), 1)
+        self.assertEqual(self.storage.count(), 3)
+
+if __name__ == '__main__':
+    unittest.main()
